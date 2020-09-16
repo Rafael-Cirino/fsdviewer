@@ -75,7 +75,7 @@ def init(title="Driverless 2d viewer", background="white", size=(600,600)):
     # Used to manage how fast the screen updates
     clock = pygame.time.Clock()
 
-def draw(Points, lines, middleLines, cars):
+def draw(Points, lines, middleLines, cars, time_lap=""):
 
     global zoom, cam_pos, screen_size, ZOOM_MAX, ZOOM_MIN, ZOOM_STEP, ZOOM_STEP_MOUSE, MOVE_STEEP
     # --- Main event loop
@@ -211,7 +211,12 @@ def draw(Points, lines, middleLines, cars):
 
         pygame.draw.polygon(screen, eval(car.color), [p1, p2, p3])
         pygame.draw.polygon(screen, eval(car.steer_color), [p1s, p2s, p3s])
-
+    
+    #Print time_lap
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    text = font.render(time, True, black, white) 
+    textRect = text.get_rect()
+    screen.blit(text, textRect)
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
